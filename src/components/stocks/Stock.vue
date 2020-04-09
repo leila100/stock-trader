@@ -7,7 +7,12 @@
       </div>
       <div class="card-body">
         <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
-        <button href="#" class="btn btn-success" @click="buyStock">Buy</button>
+        <button
+          href="#"
+          class="btn btn-success"
+          @click="buyStock"
+          :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
+        >Buy</button>
       </div>
     </div>
   </div>

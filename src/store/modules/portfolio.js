@@ -22,7 +22,7 @@ const mutations = {
       state.funds += stockPrice * quantity;
     } else {
       state.funds += stockPrice * record.quantity;
-      state.stocks.filter((record) => record.id !== stockId);
+      state.stocks = state.stocks.filter((record) => record.id !== stockId);
     }
   },
 };

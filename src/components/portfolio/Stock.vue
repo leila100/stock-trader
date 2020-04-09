@@ -28,14 +28,15 @@ export default {
   },
   props: ["stock"],
   methods: {
-    ...mapActions(["sellStock"]),
+    ...mapActions({ sellOrder: "sellStock" }),
     sellStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
         quantity: this.quantity,
       };
-      this.sellStock(order);
+      this.sellOrder(order);
+      this.quantity = 0;
     },
   },
 };

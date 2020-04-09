@@ -1,6 +1,6 @@
 <template>
   <div class="card-deck">
-    <Stock v-for="(stock, index) in stocks" :key="index"></Stock>
+    <Stock v-for="stock in stocks" :key="stock.id" :stock="stock"></Stock>
   </div>
 </template>
 

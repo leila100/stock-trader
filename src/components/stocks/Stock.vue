@@ -2,19 +2,37 @@
   <div class="col-sm-6 col-md-4">
     <div class="card border-success">
       <div class="card-header bg-success">
-        <h4 class="card-title">Name</h4>
-        <div class="card-subtitle">(Price: PRICE)</div>
+        <h4 class="card-title">{{stock.name}}</h4>
+        <div class="card-subtitle">(Price: {{stock.price}})</div>
       </div>
       <div class="card-body">
-        <input type="number" class="form-control" placeholder="Quantity" />
-        <a href="#" class="btn btn-success">Buy</a>
+        <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
+        <button href="#" class="btn btn-success" @click="buyStock">Buy</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      quantity: 0
+    };
+  },
+  props: ["stock"],
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      console.log(order);
+      this.quantity = 0;
+    }
+  }
+};
 </script>
 
 <style>

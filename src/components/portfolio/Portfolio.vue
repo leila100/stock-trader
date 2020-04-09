@@ -1,10 +1,23 @@
 <template>
-  <h1>Portfolio page</h1>
+  <div class="card-deck">
+    <Stock v-for="stock in stocks" :key="stock.id" :stock="stock"></Stock>
+  </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+import Stock from "./Stock.vue";
+
+export default {
+  computed: {
+    ...mapGetters({
+      stocks: "stockPortfolio",
+    }),
+  },
+  components: {
+    Stock,
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>

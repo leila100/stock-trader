@@ -1,21 +1,19 @@
 <template>
-  <div class="col-sm-6 col-md-4">
-    <div class="card border-success">
-      <div class="card-header bg-success">
-        <h4 class="card-title">{{ stock.name }}</h4>
-        <div class="card-subtitle">(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</div>
-      </div>
-      <div class="card-body">
-        <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
-        <button
-          href="#"
-          class="btn btn-success"
-          @click="sellStock"
-          :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
-        >
-          Sell
-        </button>
-      </div>
+  <div class="card border-primary">
+    <div class="card-header bg-primary">
+      <h4 class="card-title">{{ stock.name }}</h4>
+      <div class="card-subtitle">(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</div>
+    </div>
+    <div class="card-body">
+      <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
+      <button
+        href="#"
+        class="btn btn-primary"
+        @click="sellStock"
+        :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
+      >
+        Sell
+      </button>
     </div>
   </div>
 </template>

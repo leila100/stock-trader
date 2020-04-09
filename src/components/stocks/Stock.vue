@@ -2,8 +2,8 @@
   <div class="col-sm-6 col-md-4">
     <div class="card border-success">
       <div class="card-header bg-success">
-        <h4 class="card-title">{{stock.name}}</h4>
-        <div class="card-subtitle">(Price: {{stock.price}})</div>
+        <h4 class="card-title">{{ stock.name }}</h4>
+        <div class="card-subtitle">(Price: {{ stock.price }})</div>
       </div>
       <div class="card-body">
         <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
@@ -12,7 +12,9 @@
           class="btn btn-success"
           @click="buyStock"
           :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
-        >Buy</button>
+        >
+          Buy
+        </button>
       </div>
     </div>
   </div>
@@ -22,7 +24,7 @@
 export default {
   data() {
     return {
-      quantity: 0
+      quantity: 0,
     };
   },
   props: ["stock"],
@@ -31,12 +33,12 @@ export default {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
-        quantity: this.quantity
+        quantity: this.quantity,
       };
-      console.log(order);
+      this.$store.dispatch("buyStock", order);
       this.quantity = 0;
-    }
-  }
+    },
+  },
 };
 </script>
 

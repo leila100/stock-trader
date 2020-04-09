@@ -4,14 +4,15 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <router-link to="/portfolio" active="active" tag="li" class="nav-item"
+        <router-link to="/portfolio" activeClass="active" tag="li" class="nav-item"
           ><a class="nav-link" href="#">Porfolio</a></router-link
         >
-        <router-link to="stocks" active="active" tag="li" class="nav-item"
+        <router-link to="stocks" activeClass="active" tag="li" class="nav-item"
           ><a class="nav-link" href="#">Stocks</a></router-link
         >
       </ul>
-      <ul class="navbar-nav navbar-right">
+      <strong class="navbar-nav  mr-auto">Funds: {{ funds }}</strong>
+      <ul class="navbar-nav">
         <li class="nav-item"><a href="#" class="nav-link">End Day</a></li>
         <li class="nav-item dropdown">
           <a
@@ -36,7 +37,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+  },
+};
 </script>
 
 <style></style>

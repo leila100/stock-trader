@@ -58,8 +58,8 @@ export default {
   border: 1px solid red;
 }
 .card {
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 350px;
+  max-width: 350px;
 }
 .card-body {
   display: flex;

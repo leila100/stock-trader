@@ -4,16 +4,18 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <router-link to="/portfolio" activeClass="active" tag="li" class="nav-item"
-          ><a class="nav-link" href="#">Porfolio</a></router-link
-        >
-        <router-link to="stocks" activeClass="active" tag="li" class="nav-item"
-          ><a class="nav-link" href="#">Stocks</a></router-link
-        >
+        <router-link to="/portfolio" activeClass="active" tag="li" class="nav-item">
+          <a class="nav-link" href="#">Porfolio</a>
+        </router-link>
+        <router-link to="stocks" activeClass="active" tag="li" class="nav-item">
+          <a class="nav-link" href="#">Stocks</a>
+        </router-link>
       </ul>
-      <strong class="navbar-nav  mr-auto">Funds: {{ funds }}</strong>
+      <strong class="navbar-nav mr-auto">Funds: {{ funds | currency }}</strong>
       <ul class="navbar-nav">
-        <li class="nav-item"><a href="#" class="nav-link">End Day</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">End Day</a>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -23,9 +25,7 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >
-            Save & Load
-          </a>
+          >Save & Load</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Save data</a>
             <a class="dropdown-item" href="#">Load Data</a>
@@ -41,9 +41,13 @@ export default {
   computed: {
     funds() {
       return this.$store.getters.funds;
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style></style>
+<style>
+.navbar {
+  margin-bottom: 30px;
+}
+</style>

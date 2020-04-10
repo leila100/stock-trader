@@ -5,15 +5,23 @@
       <div class="card-subtitle">(Price: {{ stock.price }})</div>
     </div>
     <div class="card-body">
-      <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
-      <button
-        href="#"
-        class="btn btn-success"
-        @click="buyStock"
-        :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
-      >
-        Buy
-      </button>
+      <input
+        type="number"
+        class="form-control"
+        :class="{ danger: insufficientFunds }"
+        placeholder="Quantity"
+        v-model="quantity"
+      />
+      <div>
+        <button
+          href="#"
+          class="btn btn-success"
+          @click="buyStock"
+          :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(+quantity)"
+        >
+          {{ insufficientFunds ? "Insufficient Funds" : "Buy" }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +34,14 @@ export default {
     };
   },
   props: ["stock"],
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+    insufficientFunds() {
+      return this.quantity * this.stock.price >= this.funds;
+    },
+  },
   methods: {
     buyStock() {
       const order = {
@@ -40,9 +56,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.danger {
+  border: 1px solid red;
+}
 .card {
-  margin: 15px 0;
+  min-width: 300px;
+  max-width: 300px;
 }
 .card-body {
   display: flex;

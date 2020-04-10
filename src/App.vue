@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <Header />
-    <div class="row">
-      <div class="col-xs-12">
-        <router-view />
-      </div>
-    </div>
+    <router-view />
   </div>
 </template>
 

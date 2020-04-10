@@ -44,7 +44,8 @@ export default {
 
 <style>
 .card {
-  margin: 15px 0;
+  min-width: 300px;
+  max-width: 300px;
 }
 .card-body {
   display: flex;

@@ -39,7 +39,7 @@ export default {
       return this.$store.getters.funds;
     },
     insufficientFunds() {
-      return this.quantity * this.stock.price >= this.funds;
+      return this.quantity * this.stock.price > this.funds;
     },
   },
   methods: {

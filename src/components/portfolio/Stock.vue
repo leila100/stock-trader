@@ -5,14 +5,20 @@
       <div class="card-subtitle">(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</div>
     </div>
     <div class="card-body">
-      <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" />
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Quantity"
+        v-model="quantity"
+        :class="{ danger: insufficientQuantity }"
+      />
       <button
         href="#"
         class="btn btn-primary"
         @click="sellStock"
-        :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
+        :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(+quantity)"
       >
-        Sell
+        {{ insufficientQuantity ? "Insufficient quantity" : "Sell" }}
       </button>
     </div>
   </div>
@@ -27,6 +33,11 @@ export default {
     };
   },
   props: ["stock"],
+  computed: {
+    insufficientQuantity() {
+      return +this.quantity > this.stock.quantity;
+    },
+  },
   methods: {
     ...mapActions({ sellOrder: "sellStock" }),
     sellStock() {
@@ -43,6 +54,9 @@ export default {
 </script>
 
 <style>
+.danger {
+  border: 1px solid red;
+}
 .card {
   min-width: 300px;
   max-width: 300px;

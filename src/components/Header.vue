@@ -18,7 +18,7 @@
         </li>
         <li>
           <b-dropdown variant="outline-success" id="dropdown-1" text="Save & Load" class="m-md-2">
-            <b-dropdown-item>Save data</b-dropdown-item>
+            <b-dropdown-item @click="saveData">Save data</b-dropdown-item>
             <b-dropdown-item>Load Data</b-dropdown-item>
           </b-dropdown>
         </li>
@@ -45,6 +45,14 @@ export default {
     ...mapActions(["randomizeStocks"]),
     endDay() {
       this.randomizeStocks();
+    },
+    saveData() {
+      const data = {
+        funds: this.$store.getters.funds,
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks
+      };
+      this.$http.put("data.json", data);
     }
   }
 };
